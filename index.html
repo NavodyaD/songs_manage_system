@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP3 Song Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <div class="title">
+        <h1>MP3 Song Manager</h1>
+        <p>Live with your prefered songs.</p>
+    </div>
+    
+    <div class="form_area">
+        <form id="uploadForm" action="add_song.php" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <label for="mp3_file">Select MP3 file:</label>
+                <input type="file" name="mp3_file" id="mp3_file" accept=".mp3" required> <br>   
+            </div>
+            <div class="row">
+                <label for="preference">Rate the song (1 to 10 stars):</label>
+                <input type="number" name="preference" id="preference" min="1" max="10" required>
+            </div>
+            <button type="submit">Add Song</button>
+        </form>
+    </div>
+
+
+    <div class="order-section">
+        <h2 class="section-title">Song List</h2>
+        <form action="list_songs.php" method="get" class="order-form">
+            <div class="order-item">
+                <button class="order-button" name="order" value="preference">
+                    <i class="fas fa-star"></i> Order by Preference >
+                </button>
+                <span class="order-text">Order by Preference</span>
+            </div>
+            <div class="order-item">
+                <button class="order-button" name="order" value="date">
+                    <i class="fas fa-calendar-day"></i> Order by Date Added >
+                </button>
+                <span class="order-text">Order by Date Added</span>
+            </div>
+            <div class="order-item">
+                <button class="order-button" name="order" value="top_rate">
+                    <i class="fas fa-thumbs-up"></i> Top Rated Songs >
+                </button>
+                <span class="order-text">Top Rated Songs</span>
+            </div>
+        </form>
+    </div>
+    
+    <div id="songList">
+        <?php include 'list_songs.php'; ?>
+    </div>
+</body>
+</html>
